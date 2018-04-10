@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Helper\Zoho\ZohoConnect;
+
 class Welcome extends CI_Controller {
 
 	/**
@@ -20,6 +22,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$zoho = ZohoConnect::connect();
 		$this->load->view('welcome_message');
 	}
 }
