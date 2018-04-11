@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use Helper\Zoho\ZohoConnect;
+use \Helper\Zoho\ZohoConnect;
 
 class Welcome extends CI_Controller {
 

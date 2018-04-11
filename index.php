@@ -1,4 +1,5 @@
 <?php
+require 'vendor/autoload.php';
 /**
  * CodeIgniter
  *
@@ -53,8 +54,7 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-phpinfo();
-die();
+
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
 /*
