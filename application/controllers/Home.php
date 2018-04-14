@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$zoho = ZohoConnect::connect();
-		$this->load->view('welcome_message');
+		//$zoho = ZohoConnect::connect();
+		$this->load->view('shop/index');
 	}
 }
