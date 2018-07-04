@@ -6,7 +6,10 @@ class ZohoConnect {
   public static function connect(){}
 
   public function getgetGrantCode () {
-    $this->client = new \GuzzleHttp\Client('https://accounts.zoho.com');
+    $this->client = new \GuzzleHttp\Client([
+        'base_uri' => 'https://accounts.zoho.com',
+        'timeout'  => 2.0,
+    ]);
     $option = [
       'http_errors' => true,
       'query' => [
