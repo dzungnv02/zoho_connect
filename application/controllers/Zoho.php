@@ -26,8 +26,9 @@ class Zoho extends CI_Controller {
         echo 'Zoho Connected';
 	}
 
-	public function shoppingcart()
+	public function getGrantCode()
 	{
-		$this->load->view('shop/shopping-cart');
+        $zoho = new ZohoConnect();
+		echo 'Zoho Granted Code';
 	}
 }

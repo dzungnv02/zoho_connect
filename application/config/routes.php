@@ -54,3 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['zohoconnected'] = 'zoho/index';
+$route['get-zoho-grant-code'] = 'zoho/getgrantcode';
