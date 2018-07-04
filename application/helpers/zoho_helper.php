@@ -3,17 +3,21 @@ namespace Helper\Zoho;
 
 class ZohoConnect {
   protected $client;
-  public static function connect()
-  {
-    $this->client = new \GuzzleHttp\Client();
-  }
+  public static function connect(){}
 
   public function getgetGrantCode () {
-    $endpoint = 'https://accounts.zoho.com/oauth/v2/auth?scope=ZohoCRM.modules.ALL&client_id=1000.A6WRD8GD1RQI14324L0PSMKXY88TRU&response_type=code&access_type=online&redirect_uri=https://zohoconnect.herokuapp.com/zohoconnected';
+    $this->client = new \GuzzleHttp\Client('https://accounts.zoho.com');
     $option = [
-      'http_errors' => true
+      'http_errors' => true,
+      'query' => [
+        'scope' => 'ZohoCRM.modules.ALL',
+        'client_id' => '1000.A6WRD8GD1RQI14324L0PSMKXY88TRU',
+        'response_type' => 'code',
+        'access_type' => 'online',
+        'redirect_uri' => 'https://zohoconnect.herokuapp.com/zohoconnected'
+      ]
     ];
-    $responseBody = $this->client->request('GET',$endpoint,$option);
+    $responseBody = $this->client->request('GET','/oauth/v2/auth',$option);
     return $responseBody;
   }
 }
