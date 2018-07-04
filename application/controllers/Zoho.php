@@ -29,6 +29,8 @@ class Zoho extends CI_Controller {
 	public function getGrantCode()
 	{
         $zoho = new ZohoConnect();
+        $res = $zoho->getgetGrantCode();
+        var_dump($res->body);
 		echo 'Zoho Granted Code';
 	}
 }
