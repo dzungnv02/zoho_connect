@@ -30,7 +30,7 @@ class Zoho extends CI_Controller {
 	{
         $zoho = new ZohoConnect();
         $res = $zoho->getgetGrantCode();
-        var_dump($res->body);
+        var_dump(json_decode($res->getBody()));
 		echo 'Zoho Granted Code';
 	}
 }
