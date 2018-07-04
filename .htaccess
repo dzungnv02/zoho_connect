@@ -1,5 +1,5 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond $1 !^(index\.php|assets|assets/css|assets/js|assets/etc|robots\.txt|assets/plugins)
+RewriteCond $1 !^(index\.php|assets|assets/*|robots\.txt)
 RewriteRule ^(.*)$ index.php/$1 [L]
