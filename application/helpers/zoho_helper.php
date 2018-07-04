@@ -2,7 +2,7 @@
 namespace Helper\Zoho;
 
 class ZohoConnect {
-  protected static $client;
+  protected $client;
   public static function connect()
   {
     $this->client = new \GuzzleHttp\Client();
