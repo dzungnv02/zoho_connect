@@ -40,7 +40,8 @@ class ZohoCrmConnect {
 
     $response = $this->zoho_account_client->request('POST','/oauth/v2/token',$options);
     if ($response->getStatusCode() == 200) {
-      return json_decode($response->getBody());
+      $data = json_decode($response->getBody());
+      return $data;
     }
     else {
       return false;
