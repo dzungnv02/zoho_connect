@@ -14,7 +14,7 @@ class ZohoCrmConnect {
   const ZOHO_ACCOUNT_BASE_URL = 'https://accounts.zoho.com';
   const ZOHO_CRM_BASE_URL = 'https://accounts.zoho.com';
 
-  public static function connect(){
+  public function connect(){
     $this->zoho_account_client = new \GuzzleHttp\Client([
         'base_uri' => self::ZOHO_ACCOUNT_BASE_URL,
         'timeout'  => 2.0,
