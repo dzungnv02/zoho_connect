@@ -184,12 +184,13 @@ class ZohoCrmConnect {
         }
         else {
           var_dump($response->getStatusCode());
-          var_dump($response->getBody());
+          var_dump(json_decode($response->getBody()));
           return false;
         }
       }
       catch (Guzzle\Http\Exception\ClientErrorResponseException $exception) {
         $responseBody = $exception->getResponse()->getBody(true);
+        var_dump($responseBody);
       }
     }
     else {
