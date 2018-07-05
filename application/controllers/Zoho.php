@@ -28,6 +28,22 @@ class Zoho extends CI_Controller {
 		var_dump($lead->Email);
 	}
 
+	public function insertLead () {
+		$record = new \stdClass;
+		$lead = new \stdClass;
+		$lead->Last_Name = 'Test 1';
+		$lead->First_Name = 'User';
+		$lead->Company = 'i3 Viet Nam';
+		$lead->Email = 'test1@i3vietnam.com';
+		$lead->phone = '0988765453';
+		$record->data = [$lead];
+		$record->trigger = ["approval"];
+
+		$zoho = new ZohoCrmConnect();
+		$inserted = $zoho->insertRecord('Leads', $record);
+		var_dump($inserted);
+	}
+
 	public function getGrantCode()
 	{
 

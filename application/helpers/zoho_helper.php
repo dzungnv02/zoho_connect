@@ -165,9 +165,30 @@ class ZohoCrmConnect {
     */
 
     if ($module !== '' && $data !== null) {
+      $uri = '/crm/v2/'.$module;
+      $access_token = $this->getAccessToken();
 
+      $options = [
+        'http_errors' => true,
+        'json' => $data,
+        'headers' => [
+          'Authorization' => 'Zoho-oauthtoken '. $access_token->access_token
+        ]
+      ];
+
+      $response = $this->zoho_crm_client->request('POST', $uri, $options);
+      if ($response->getStatusCode() == 200) {
+        $data = json_decode($response->getBody());
+        $record = $data->data[0];
+        return $record;
+      }
+      else {
+        return false;
+      }
     }
-
+    else {
+      return false;
+    }  
   }
 
 }
