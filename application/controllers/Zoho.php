@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use Helper\Zoho\ZohoConnect;
+use Helper\Zoho\ZohoCrmConnect;
 
 class Zoho extends CI_Controller {
 
@@ -22,17 +22,15 @@ class Zoho extends CI_Controller {
 	 */
 	public function index()
 	{
-        //$zoho = ZohoConnect::connect();
+		$zoho = ZohoCrmConnect::connect();
+		$access_token = $zoho->getAccessToken();
+		var_dump($access_token);
         echo 'Zoho Connected';
 	}
 
 	public function getGrantCode()
 	{
-        // $zoho = new ZohoConnect();
-        // $res = $zoho->getgetGrantCode();
-        // var_dump($res->getBody());
-        $ins=ZCRMRestClient::getInstance();
-        $moduleArr=$ins->getAllModules()->getData();
+
 		echo 'Zoho Granted Code';
 	}
 }
