@@ -78,5 +78,33 @@ class ZohoCrmConnect {
     }
   }
 
+  public function getRecordById($id, $module) {
+    $record = [];
+    if ($module !== '' && $id !== '') {
+      $uri = '/crm/v2/'.$module.'/'.$id;
+      $access_token = $this->getAccessToken();
+
+      $options = [
+        'http_errors' => true,
+        'headers' => [
+          'Authorization' => 'Zoho-oauthtoken '. $access_token->access_token
+        ]
+      ];
+
+      $response = $this->zoho_crm_client->request('GET', $uri, $options);
+      if ($response->getStatusCode() == 200) {
+        $data = json_decode($response->getBody());
+        //$record = $data->data;
+        return $data;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }    
+  }
+
 }
 ?>
