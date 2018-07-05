@@ -25,6 +25,7 @@ class Zoho extends CI_Controller {
 		$zoho = new ZohoCrmConnect();
 		$lead = $zoho->getRecordById('Leads','2672639000000206003');
 		var_dump($lead->id);
+		var_dump($lead->Email);
 	}
 
 	public function getGrantCode()
