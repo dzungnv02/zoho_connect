@@ -78,7 +78,7 @@ class ZohoCrmConnect {
     }
   }
 
-  public function getRecordById($id, $module) {
+  public function getRecordById($module, $id) {
     $record = [];
     if ($module !== '' && $id !== '') {
       $uri = '/crm/v2/'.$module.'/'.$id;
@@ -104,6 +104,70 @@ class ZohoCrmConnect {
     else {
       return false;
     }    
+  }
+
+  public function search($module, $field, $value) {
+    $records = [];
+    if ($module !== '' && $id !== '') {
+      $uri = '/crm/v2/'.$module.'/search';
+      $access_token = $this->getAccessToken();
+
+      $options = [
+        'http_errors' => true,
+        'query' => [
+          $field => $value
+        ],
+        'headers' => [
+          'Authorization' => 'Zoho-oauthtoken '. $access_token->access_token
+        ]
+      ];
+
+      $response = $this->zoho_crm_client->request('GET', $uri, $options);
+      if ($response->getStatusCode() == 200) {
+        $data = json_decode($response->getBody());
+        $records = $data->data;
+        return $records;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }   
+  }
+
+  public function searchRecordByEmail($module, $email) {
+    return $this->search($module,'email', $email);   
+  }
+
+  public function searchRecordByPhone($module, $phone) {
+    return $this->search($module,'phone', $phone);   
+  }
+
+  public function insertRecord($module, $data) {
+    /* Sample data
+      {
+          "data": [
+            {
+                  "Company": "Acme Inc",
+                  "Last_Name": "Donelly",
+                  "First_Name": "Jennifer",
+                  "Email": "jennifer@acme.com",
+                  "State": "Texas",
+                  "Country": "United States"
+              }
+          ],
+          "trigger": [
+              "approval"
+          ]
+      }    
+    */
+
+    if ($module !== '' && $data !== null) {
+      
+    }
+
   }
 
 }
