@@ -6,15 +6,18 @@ if (!defined('ZOHO_APP_CLIENT_ID')) define('ZOHO_APP_CLIENT_ID', '1000.A6WRD8GD1
 if (!defined('ZOHO_APP_CLIENT_SECRET')) define('ZOHO_APP_CLIENT_SECRET', '0fb497a88dae0583b1177f03b669d104a70ba6a414');
 
 
-
 class ZohoCrmConnect {
   protected $zoho_account_client;
   protected $zoho_crm_client;
 
   const ZOHO_ACCOUNT_BASE_URL = 'https://accounts.zoho.com';
-  const ZOHO_CRM_BASE_URL = 'https://accounts.zoho.com';
+  const ZOHO_CRM_BASE_URL = 'https://www.zohoapis.com';
 
-  public function connect(){
+  public function __construct () {
+    $this->connect();
+  }
+
+  private function connect(){
     $this->zoho_account_client = new \GuzzleHttp\Client([
         'base_uri' => self::ZOHO_ACCOUNT_BASE_URL,
         'timeout'  => 2.0,
@@ -27,7 +30,6 @@ class ZohoCrmConnect {
   }
 
   public function getAccessToken () {
-    $this->connect();
     $options = [
       'http_errors' => true,
       'query' => [
@@ -48,6 +50,32 @@ class ZohoCrmConnect {
     }
   }
 
+  public function getAllRecords($module) {
+    $records = [];
+    if ($module !== '') {
+      $uri = '/crm/v2/'.$module;
+      $access_token = $this->getAccessToken();
+
+      $options = [
+        'http_errors' => true,
+        'headers' => [
+          'Authorization' => 'Zoho-oauthtoken '. $access_token->access_token
+        ]
+      ];
+
+      $response = $this->zoho_crm_client->request('GET', $uri, $options);
+      if ($response->getStatusCode() == 200) {
+        $data = json_decode($response->getBody());
+        return $data;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }
+  }
 
 }
 ?>

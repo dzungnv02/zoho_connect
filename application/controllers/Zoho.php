@@ -23,8 +23,8 @@ class Zoho extends CI_Controller {
 	public function index()
 	{
 		$zoho = new ZohoCrmConnect();
-		$access_token = $zoho->getAccessToken();
-		var_dump($access_token);
+		$leads = $zoho->getAllRecords('Leads');
+		var_dump($leads);
         echo 'Zoho Connected';
 	}
 
