@@ -170,7 +170,7 @@ class ZohoCrmConnect {
 
       $options = [
         'http_errors' => true,
-        'json' => json_decode($data),
+        'json' => $data,
         'headers' => [
           'Authorization' => 'Zoho-oauthtoken '. $access_token->access_token
         ]

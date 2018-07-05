@@ -35,7 +35,7 @@ class Zoho extends CI_Controller {
 		$lead->First_Name = 'User';
 		$lead->Company = 'i3 Viet Nam';
 		$lead->Email = 'test1@i3vietnam.com';
-		$lead->phone = '0988765453';
+		$lead->Phone = '0988765453';
 		$record->data = [$lead];
 		$record->trigger = ["approval"];
 
