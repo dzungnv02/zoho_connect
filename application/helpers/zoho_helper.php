@@ -94,8 +94,8 @@ class ZohoCrmConnect {
       $response = $this->zoho_crm_client->request('GET', $uri, $options);
       if ($response->getStatusCode() == 200) {
         $data = json_decode($response->getBody());
-        //$record = $data->data;
-        return $data;
+        $record = $data->data;
+        return $record;
       }
       else {
         return false;
