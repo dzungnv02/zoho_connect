@@ -27,6 +27,7 @@ class ZohoCrmConnect {
   }
 
   public function getAccessToken () {
+    $this->connect();
     $options = [
       'http_errors' => true,
       'query' => [
