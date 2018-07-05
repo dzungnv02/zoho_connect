@@ -175,23 +175,15 @@ class ZohoCrmConnect {
           'Authorization' => 'Zoho-oauthtoken '. $access_token->access_token
         ]
       ];
-      try {
         $response = $this->zoho_crm_client->request('POST', $uri, $options);
-        if ($response->getStatusCode() == 200) {
+        if ($response->getStatusCode() == 201) {
           $data = json_decode($response->getBody());
           $record = $data->data[0];
           return $record;
         }
         else {
-          var_dump($response->getStatusCode());
-          var_dump(json_decode($response->getBody()));
           return false;
         }
-      }
-      catch (Guzzle\Http\Exception\ClientErrorResponseException $exception) {
-        $responseBody = $exception->getResponse()->getBody(true);
-        var_dump($responseBody);
-      }
     }
     else {
       return false;
