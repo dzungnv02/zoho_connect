@@ -146,24 +146,6 @@ class ZohoCrmConnect {
   }
 
   public function insertRecord($module, $data) {
-    /* Sample data
-      {
-          "data": [
-            {
-                  "Company": "Acme Inc",
-                  "Last_Name": "Donelly",
-                  "First_Name": "Jennifer",
-                  "Email": "jennifer@acme.com",
-                  "State": "Texas",
-                  "Country": "United States"
-              }
-          ],
-          "trigger": [
-              "approval"
-          ]
-      }    
-    */
-
     if ($module !== '' && $data !== null) {
       $uri = '/crm/v2/'.$module;
       $access_token = $this->getAccessToken();

@@ -53,5 +53,6 @@ $route['default_controller'] = 'shop';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['zohoconnected'] = 'zoho/index';
-$route['zohoinsertlead'] = 'zoho/insertLead';
+$route['zoho_get_all_leads'] = 'zoho/getallrecords';
+$route['zoho_get_lead_by_id'] = 'zoho/getrecord';
+$route['zoho_insert_lead'] = 'zoho/insertLead';
